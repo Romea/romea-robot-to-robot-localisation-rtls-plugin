@@ -7,10 +7,6 @@ repositories:
         type: git
         url: git@gitlab-ssh.irstea.fr:romea_core/romea_rtls.git
         version: devel
-    romea_core/romea_rtls_transceiver:
-        type: git
-        url: git@gitlab-ssh.irstea.fr:romea_core/romea_rtls_transceiver.git
-        version: devel
 
 
     romea_core/romea_filtering:
@@ -30,9 +26,14 @@ repositories:
         type: git
         url: git@gitlab-ssh.irstea.fr:romea_ros2/tools/romea_common.git
         version: devel
-    romea_ros2/interfaces/sensors/romea_gps:
+    romea_ros2/interfaces/sensors/romea_rtls:
         type: git
-        url: git@gitlab-ssh.irstea.fr:romea_ros2/interfaces/sensors/romea_gps.git
+        url: git@gitlab-ssh.irstea.fr:romea_ros2/interfaces/sensors/romea_rtls.git
+        version: devel
+    romea_ros2/interfaces/sensors/romea_rtls_transceiver:
+        type: git
+        url: git@gitlab-ssh.irstea.fr:romea_ros2/interfaces/sensors/romea_rtls_transceiver.git
+        version: devel
 
     romea_ros2/algorithms/localisation/romea_localisation_msgs:
         type: git
@@ -44,7 +45,7 @@ repositories:
         version: devel
     romea_ros2/algorithms/localisation/romea_localisation_robot_to_robot_rtls_plugin:
         type: git
-        url: git@gitlab-ssh.irstea.fr:romea_ros2/algorithms/localisation/romea_robot_to_robot_localisation_plugin.git
+        url: git@gitlab-ssh.irstea.fr:romea_ros2/algorithms/localisation/romea_robot_to_robot_localisation_rtls_plugin.git
         version: devel
 
     third_party/serial:
