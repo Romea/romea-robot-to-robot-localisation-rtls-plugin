@@ -39,6 +39,7 @@ public:
   using PayloadMsg = romea_rtls_transceiver_msgs::msg::Payload;
   using ObservationRangeStampedMsg = romea_localisation_msgs::msg::ObservationRangeStamped;
   using ObservationPose2DStampedMsg = romea_localisation_msgs::msg::ObservationPose2DStamped;
+  using ObservationTwist2DStampedMsg = romea_localisation_msgs::msg::ObservationTwist2DStamped;
 
 public:
   ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PUBLIC

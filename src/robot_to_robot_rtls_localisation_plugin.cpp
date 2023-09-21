@@ -1,6 +1,7 @@
 // Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
 // Add license
 
+
 // std
 #include <functional>
 #include <memory>
@@ -34,6 +35,7 @@ R2RRTLSLocalisationPlugin::R2RRTLSLocalisationPlugin(const rclcpp::NodeOptions &
   init_communication_hub_();
   init_range_publisher_();
   init_leader_pose_publisher_();
+  init_leader_twist_publisher_();
   init_diagnostic_publisher_();
   init_scheduler_();
 }
@@ -53,8 +55,10 @@ void R2RRTLSLocalisationPlugin::declare_parameters_()
   declare_range_std(node_);
   declare_minimal_range(node_);
   declare_maximal_range(node_);
+  declare_initiators_ids(node_);
   declare_initiators_names(node_);
   declare_initiators_positions(node_);
+  declare_responders_ids(node_);
   declare_responders_names(node_);
   declare_responders_positions(node_);
 }
@@ -85,7 +89,7 @@ void R2RRTLSLocalisationPlugin::init_leader_pose_publisher_()
 //-----------------------------------------------------------------------------
 void R2RRTLSLocalisationPlugin::init_leader_twist_publisher_()
 {
-  leader_pose_pub_ = make_stamped_data_publisher<ObservationPose, ObservationPose2DStampedMsg>(
+  leader_twist_pub_ = make_stamped_data_publisher<ObservationTwist, ObservationTwist2DStampedMsg>(
     node_, "leader_twist", "leader_base_link", sensor_data_qos(), true);
 }
 
