@@ -38,7 +38,6 @@ def launch_setup(context, *args, **kwargs):
     plugin_configuration = get_plugin_configuration(context)
     component_container = get_component_container(context)
 
-    print(plugin_configuration)
     if not component_container:
         node = Node(
             package="romea_robot_to_robot_localisation_rtls_plugin",

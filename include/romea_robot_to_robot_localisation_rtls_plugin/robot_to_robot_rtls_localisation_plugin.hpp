@@ -1,8 +1,8 @@
 // Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
 // Add license
 
-#ifndef ROMEA_ROBOT_TO_WOLRD_RTLS_LOCALISATION_PLUGIN_HPP_
-#define ROMEA_ROBOT_TO_WOLRD_RTLS_LOCALISATION_PLUGIN_HPP_
+#ifndef ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PLUGIN__ROBOT_TO_ROBOT_RTLS_LOCALISATION_PLUGIN_HPP_
+#define ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PLUGIN__ROBOT_TO_ROBOT_RTLS_LOCALISATION_PLUGIN_HPP_
 
 
 // std
@@ -42,13 +42,13 @@ public:
   using ObservationTwist2DStampedMsg = romea_localisation_msgs::msg::ObservationTwist2DStamped;
 
 public:
-  ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PUBLIC
+  ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PLUGIN_PUBLIC
   explicit R2RRTLSLocalisationPlugin(const rclcpp::NodeOptions & options);
 
-  ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PUBLIC
+  ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PLUGIN_PUBLIC
   virtual ~R2RRTLSLocalisationPlugin() = default;
 
-  ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PUBLIC
+  ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PLUGIN_PUBLIC
   rclcpp::node_interfaces::NodeBaseInterface::SharedPtr
   get_node_base_interface() const;
 
@@ -102,4 +102,4 @@ protected:
 
 }  // namespace romea
 
-#endif  // ROMEA_ROBOT_TO_WOLRD_RTLS_LOCALISATION_PLUGIN_HPP_
+#endif  // ROMEA_ROBOT_TO_ROBOT_LOCALISATION_RTLS_PLUGIN__ROBOT_TO_ROBOT_RTLS_LOCALISATION_PLUGIN_HPP_
