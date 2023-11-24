@@ -27,6 +27,8 @@
 
 namespace romea
 {
+namespace ros2
+{
 
 //-----------------------------------------------------------------------------
 R2RRTLSLocalisationPlugin::R2RRTLSLocalisationPlugin(const rclcpp::NodeOptions & options)
@@ -94,21 +96,24 @@ void R2RRTLSLocalisationPlugin::init_range_publisher_()
 //-----------------------------------------------------------------------------
 void R2RRTLSLocalisationPlugin::init_leader_pose_publisher_()
 {
-  leader_pose_pub_ = make_stamped_data_publisher<ObservationPose, ObservationPose2DStampedMsg>(
+  leader_pose_pub_ =
+    make_stamped_data_publisher<core::ObservationPose, ObservationPose2DStampedMsg>(
     node_, "leader_pose", get_base_footprint_frame_id(node_), sensor_data_qos(), true);
 }
 
 //-----------------------------------------------------------------------------
 void R2RRTLSLocalisationPlugin::init_leader_twist_publisher_()
 {
-  leader_twist_pub_ = make_stamped_data_publisher<ObservationTwist, ObservationTwist2DStampedMsg>(
+  leader_twist_pub_ = make_stamped_data_publisher<core::ObservationTwist,
+      ObservationTwist2DStampedMsg>(
     node_, "leader_twist", "leader_base_link", sensor_data_qos(), true);
 }
 
 //-----------------------------------------------------------------------------
 void R2RRTLSLocalisationPlugin::init_diagnostic_publisher_()
 {
-  diagnostic_pub_ = make_diagnostic_publisher<DiagnosticReport>(node_, node_->get_name(), 1.0);
+  diagnostic_pub_ =
+    make_diagnostic_publisher<core::DiagnosticReport>(node_, node_->get_name(), 1.0);
 }
 
 //-----------------------------------------------------------------------------
@@ -144,10 +149,10 @@ void R2RRTLSLocalisationPlugin::init_plugin_()
 void R2RRTLSLocalisationPlugin::process_ranging_request_(
   const size_t & initiator_index,
   const size_t & responder_index,
-  const Duration & timeout)
+  const core::Duration & timeout)
 {
   rtls_communication_hub_->send_ranging_request(
-    initiator_index, responder_index, durationToSecond(timeout));
+    initiator_index, responder_index, core::durationToSecond(timeout));
 
   if (initiator_index == 0 && responder_index == 0) {
     diagnostic_pub_->publish(node_->get_clock()->now(), scheduler_->getReport());
@@ -181,7 +186,7 @@ void R2RRTLSLocalisationPlugin::process_range_(
 void R2RRTLSLocalisationPlugin::process_payload_(const PayloadMsg & payload)
 {
   if (!payload.data.empty()) {
-    auto leader_twist = deserializeTwist2D(payload.data);
+    auto leader_twist = core::deserializeTwist2D(payload.data);
     leader_twist_observation_.firstMoment(0) = leader_twist.linearSpeeds.x();
     leader_twist_observation_.firstMoment(1) = leader_twist.linearSpeeds.x();
     leader_twist_observation_.firstMoment(2) = leader_twist.angularSpeed;
@@ -200,7 +205,8 @@ void R2RRTLSLocalisationPlugin::publish_range_(
   range_pub_->publish(std::move(range_msg));
 }
 
+}  // namespace ros2
 }  // namespace romea
 
 #include "rclcpp_components/register_node_macro.hpp"
-RCLCPP_COMPONENTS_REGISTER_NODE(romea::R2RRTLSLocalisationPlugin)
+RCLCPP_COMPONENTS_REGISTER_NODE(romea::ros2::R2RRTLSLocalisationPlugin)
