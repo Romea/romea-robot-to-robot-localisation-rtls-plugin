@@ -113,7 +113,8 @@ void R2RRTLSLocalisationPlugin::init_leader_twist_publisher_()
 void R2RRTLSLocalisationPlugin::init_diagnostic_publisher_()
 {
   diagnostic_pub_ =
-    make_diagnostic_publisher<core::DiagnosticReport>(node_, node_->get_name(), 1.0);
+    make_diagnostic_publisher<core::DiagnosticReport>(
+    node_, node_->get_fully_qualified_name(), 1.0);
 }
 
 //-----------------------------------------------------------------------------
